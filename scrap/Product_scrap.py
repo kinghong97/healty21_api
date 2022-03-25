@@ -6,18 +6,23 @@ headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/
 categorys = [329251,329226,329240,329279,329294,329323]
 category_list = ['근력운동','요가/필라테스','요가복','유산소운동','스트레칭/균형','헬스소품/보호대']
 
+''' 카테고리
+근력운동 : 329251
+요가/필라테스 : 329226
+요가복 : 329240
+유산소운동 : 329279
+스트레칭/균형 : 329294
+헬스소품/보호대 : 329323
+'''
 
-# 근력운동 : 329251
-# 요가/필라테스 : 329226
-# 요가복 : 329240
-# 유산소운동 : 329279
-# 스트레칭/균형 : 329294
-# 헬스소품/보호대 : 329323
 
 all_product_page = []
+product_data = []
+
+
 for category in categorys:
     for i in range(1,22):
-        url = f'https://www.coupang.com/np/categories/{category}?page={i}'
+        url = f'https://www.coupang.com/np/categories/{category}?page={i}&listSize=120'
         res = requests.get(url)
         text = res.text
         soup = BeautifulSoup(text)
@@ -31,7 +36,7 @@ for category in categorys:
 
 # 상품이름 , 종류 , 링크 , 할인 , 정상가 , 할인가 , 리뷰개수 , 평점 , 이미지 소스
 
-product_data = []
+
 
 for page_list in all_product_page:
     index = all_product_page.index(page_list)//17
